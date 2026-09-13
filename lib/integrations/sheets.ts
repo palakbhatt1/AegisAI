@@ -3,9 +3,14 @@ import fs from "fs";
 
 let sheets: any = null;
 try {
-  const credentials = JSON.parse(
-    fs.readFileSync(process.env.GOOGLE_SERVICE_ACCOUNT_KEY_FILE!, "utf-8")
-  );
+  let credentials;
+  if (process.env.GOOGLE_SERVICE_ACCOUNT_JSON) {
+    credentials = JSON.parse(process.env.GOOGLE_SERVICE_ACCOUNT_JSON);
+  } else {
+    credentials = JSON.parse(
+      fs.readFileSync(process.env.GOOGLE_SERVICE_ACCOUNT_KEY_FILE!, "utf-8")
+    );
+  }
 
   const auth = new google.auth.GoogleAuth({
     credentials,
