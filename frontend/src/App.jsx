@@ -2,6 +2,11 @@ import { useState } from 'react';
 import IncidentList from './pages/IncidentList';
 import IncidentDetail from './pages/IncidentDetail';
 import LandingPage from './pages/LandingPage';
+import IncidentsPage from './pages/IncidentsPage';
+import AgentsPage from './pages/AgentsPage';
+import AnalyticsPage from './pages/AnalyticsPage';
+import IntegrationsPage from './pages/IntegrationsPage';
+import SettingsPage from './pages/SettingsPage';
 import './index.css';
 
 // SVG Icons for the sidebar
@@ -103,7 +108,7 @@ function App() {
         </div>
 
         {/* Split Views Area */}
-        {activeTab === 'Dashboard' ? (
+        {activeTab === 'Dashboard' && (
           <div className="flex-1 overflow-hidden px-8 pb-8 flex gap-6">
             {/* Left Column - List */}
             <div className="w-1/3 min-w-[320px] max-w-[400px] flex flex-col h-full bg-[#c8d4c8] relative z-10">
@@ -122,11 +127,16 @@ function App() {
               />
             </div>
           </div>
-        ) : (
-          <div className="flex-1 flex items-center justify-center pb-20">
-            <h2 className="text-4xl lg:text-6xl font-black text-black/10 tracking-tighter uppercase">
-              {activeTab} <br/> MODULE <br/> COMING SOON
-            </h2>
+        )}
+        
+        {/* Dynamic Pages */}
+        {activeTab !== 'Dashboard' && (
+          <div className="flex-1 overflow-hidden px-8 pb-8 flex">
+            {activeTab === 'Incidents' && <IncidentsPage />}
+            {activeTab === 'Agents' && <AgentsPage />}
+            {activeTab === 'Analytics' && <AnalyticsPage />}
+            {activeTab === 'Integrations' && <IntegrationsPage />}
+            {activeTab === 'Settings' && <SettingsPage />}
           </div>
         )}
 

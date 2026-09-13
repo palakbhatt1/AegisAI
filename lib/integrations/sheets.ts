@@ -1,29 +1,35 @@
 import { google } from "googleapis";
 import fs from "fs";
 
-const credentials = JSON.parse(
-  fs.readFileSync(process.env.GOOGLE_SERVICE_ACCOUNT_KEY_FILE!, "utf-8")
-);
+let sheets: any = null;
+try {
+  const credentials = JSON.parse(
+    fs.readFileSync(process.env.GOOGLE_SERVICE_ACCOUNT_KEY_FILE!, "utf-8")
+  );
 
-const auth = new google.auth.GoogleAuth({
-  credentials,
-  scopes: ["https://www.googleapis.com/auth/spreadsheets"],
-});
+  const auth = new google.auth.GoogleAuth({
+    credentials,
+    scopes: ["https://www.googleapis.com/auth/spreadsheets"],
+  });
 
-const sheets = google.sheets({
-  version: "v4",
-  auth,
-});
+  sheets = google.sheets({
+    version: "v4",
+    auth,
+  });
+} catch (e) {
+  console.warn("Google Sheets integration disabled: missing or invalid service account key file.");
+}
 
 export async function logToSheets(incident: any) {
+  if (!sheets) return;
   const values = [[
     incident.incident_id ?? "",
     new Date().toISOString(),
     incident.severity ?? "",
     incident.failure_type ?? "",
     incident.root_cause ?? "",
-    JSON.stringify(incident.evidence ?? ""),
-    incident.suggested_fix ?? "",
+    incident.evidence ? JSON.stringify(incident.evidence) : "None",
+    typeof incident.suggested_fix === 'object' ? incident.suggested_fix.description : (incident.suggested_fix ?? ""),
     incident.status ?? "Open",
   ]];
 
@@ -36,6 +42,7 @@ export async function logToSheets(incident: any) {
 }
 
 export async function getIncidentsFromSheets() {
+  if (!sheets) return [];
   const response = await sheets.spreadsheets.values.get({
     spreadsheetId: process.env.GOOGLE_SHEET_ID!,
     range: "Sheet1!A:H",
@@ -45,6 +52,7 @@ export async function getIncidentsFromSheets() {
 }
 
 export async function updateIncidentInSheets(incident: any) {
+  if (!sheets) return;
   const rows = await getIncidentsFromSheets();
 
   const rowIndex = rows.findIndex(

@@ -74,8 +74,8 @@ export async function updateGithubIssue(incident: any) {
         body: commentBody,
     });
 
-    // Optionally close issue if resolved or rejected
-    if (["closed", "resolved", "rejected"].includes(status.toLowerCase())) {
+    // Optionally close issue if resolved, rejected, or approved
+    if (["closed", "resolved", "rejected", "approved"].includes(status.toLowerCase())) {
         try {
             await octokit.issues.update({
                 owner,
