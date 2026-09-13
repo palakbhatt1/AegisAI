@@ -2,21 +2,33 @@
 
 @layer base {
   body {
-    @apply bg-slate-900 text-slate-100 antialiased font-sans selection:bg-indigo-500/30;
+    @apply bg-slate-100 text-slate-900 antialiased selection:bg-indigo-500/30 overflow-hidden;
+    /* We will use a sleek minimal aesthetic, with some bold fonts */
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+}
+
+@layer utilities {
+  .hero-text {
+    font-size: clamp(3rem, 7vw, 7rem);
+    line-height: 0.85;
+    letter-spacing: -0.04em;
+    font-weight: 900;
+  }
+  
+  .glass-card {
+    @apply bg-white/70 backdrop-blur-xl border border-white/50 shadow-2xl rounded-2xl;
   }
 }
 
 @layer components {
   .btn-primary {
-    @apply px-4 py-2 bg-indigo-600 hover:bg-indigo-500 text-white font-medium rounded-lg transition-all duration-200 shadow-[0_0_15px_rgba(79,70,229,0.3)] hover:shadow-[0_0_20px_rgba(79,70,229,0.5)] active:scale-95;
+    @apply px-6 py-3 bg-black hover:bg-slate-800 text-white font-bold rounded-full transition-all duration-300 shadow-[0_4px_14px_0_rgb(0,0,0,0.39)] hover:shadow-[0_6px_20px_rgba(0,0,0,0.23)] hover:-translate-y-0.5 active:scale-95 uppercase tracking-widest text-xs;
   }
   .btn-danger {
-    @apply px-4 py-2 bg-rose-600 hover:bg-rose-500 text-white font-medium rounded-lg transition-all duration-200 shadow-[0_0_15px_rgba(225,29,72,0.3)] hover:shadow-[0_0_20px_rgba(225,29,72,0.5)] active:scale-95;
+    @apply px-6 py-3 bg-red-600 hover:bg-red-500 text-white font-bold rounded-full transition-all duration-300 shadow-[0_4px_14px_0_rgb(220,38,38,0.39)] hover:shadow-[0_6px_20px_rgba(220,38,38,0.23)] hover:-translate-y-0.5 active:scale-95 uppercase tracking-widest text-xs;
   }
   .btn-secondary {
-    @apply px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 font-medium rounded-lg transition-all duration-200 border border-slate-700 active:scale-95;
-  }
-  .glass-card {
-    @apply bg-slate-800/50 backdrop-blur-md border border-slate-700/50 shadow-xl rounded-xl;
+    @apply px-6 py-3 bg-white hover:bg-slate-50 text-black font-bold rounded-full transition-all duration-300 border-2 border-black/10 hover:border-black/20 active:scale-95 uppercase tracking-widest text-xs;
   }
 }

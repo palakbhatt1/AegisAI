@@ -6,31 +6,31 @@ export default function IncidentCard({ incident, isSelected, onClick }) {
   return (
     <div 
       onClick={onClick}
-      className={`p-4 cursor-pointer transition-all duration-200 border-b border-slate-700/50 hover:bg-slate-800/80 
-        ${isSelected ? 'bg-slate-800 border-l-4 border-l-indigo-500' : 'border-l-4 border-l-transparent'}`}
+      className={`p-5 cursor-pointer transition-all duration-300 border-b border-black/5 hover:bg-white/40 
+        ${isSelected ? 'bg-white/60 shadow-inner' : 'bg-transparent'}`}
     >
-      <div className="flex justify-between items-start mb-2">
+      <div className="flex justify-between items-start mb-3">
         <div className="flex items-center gap-2">
           <SeverityBadge severity={incident.severity} />
-          <span className="text-sm text-slate-400 font-mono">{incident.incident_id.split('-')[1]}</span>
+          <span className="text-xs text-slate-500 font-bold uppercase tracking-widest">{incident.incident_id.split('-')[1]}</span>
         </div>
-        <span className="text-xs text-slate-500">
+        <span className="text-xs font-bold text-slate-400 uppercase tracking-widest">
           {new Date(incident.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
         </span>
       </div>
       
-      <h3 className="text-slate-100 font-medium text-sm mb-1 truncate">
+      <h3 className="text-black font-bold text-lg mb-2 truncate capitalize tracking-tight">
         {incident.failure_type.replace(/_/g, ' ')}
       </h3>
       
-      <div className="flex justify-between items-center mt-3">
-        <span className="text-xs text-slate-400 font-mono">Agent: {incident.agent_id}</span>
+      <div className="flex justify-between items-center mt-4">
+        <span className="text-[10px] text-slate-500 font-bold uppercase tracking-widest bg-black/5 px-2 py-1 rounded">Agent: {incident.agent_id}</span>
         
-        <span className={`text-xs px-2 py-1 rounded-md capitalize ${
-          incident.status === 'approved' ? 'bg-emerald-900/30 text-emerald-400' :
-          incident.status === 'rejected' ? 'bg-rose-900/30 text-rose-400' :
-          isPending ? 'bg-indigo-900/30 text-indigo-400 animate-pulse' :
-          'bg-slate-800 text-slate-400'
+        <span className={`text-[10px] px-2 py-1 rounded font-bold uppercase tracking-widest ${
+          incident.status === 'approved' ? 'bg-emerald-100 text-emerald-800 border border-emerald-200' :
+          incident.status === 'rejected' ? 'bg-red-100 text-red-800 border border-red-200' :
+          isPending ? 'bg-indigo-100 text-indigo-800 border border-indigo-200 animate-pulse' :
+          'bg-slate-100 text-slate-800 border border-slate-200'
         }`}>
           {incident.status.replace('_', ' ')}
         </span>

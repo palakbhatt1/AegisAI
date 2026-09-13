@@ -8,7 +8,7 @@ let localIncidents = [...fixtures];
 const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
 
 // Toggle this to false once the backend is ready (around 1:00 target)
-const USE_MOCKS = true;
+const USE_MOCKS = false;
 
 export async function getIncidents() {
   if (USE_MOCKS) {

@@ -13,5 +13,20 @@
     },
     "status": "created",
     "trace_ref": null
+  },
+  "0c255c09-16d8-4b73-a667-fd179e17e2ed": {
+    "incident_id": "0c255c09-16d8-4b73-a667-fd179e17e2ed",
+    "timestamp": "2026-09-13T13:08:01.734824+00:00",
+    "agent_id": "demo-agent-42",
+    "failure_type": "execution_loop",
+    "severity": "high",
+    "root_cause": "The agent entered an infinite execution loop at step 3 when calling 'search'. It repeatedly made identical calls without making progress towards the goal.",
+    "suggested_fix": {
+      "description": "Break the loop by injecting a circuit breaker or explicit 'stop' condition in the agent's prompt. Require the agent to try a different approach if the same tool+input combination is called more than twice.",
+      "diff": "@@ -15,4 +15,6 @@\n def call_tool(tool_name, tool_input):\n+    if (tool_name, tool_input) in history and history.count((tool_name, tool_input)) >= 2:\n+        return \"Error: You are repeating the same action. Try a different strategy.\"\n     return execute(tool_name, tool_input)",
+      "target_file": "agent/demo_agent.py"
+    },
+    "status": "notified",
+    "trace_ref": "trace-001"
   }
 }
