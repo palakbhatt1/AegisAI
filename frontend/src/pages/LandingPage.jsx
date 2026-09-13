@@ -41,30 +41,32 @@ export default function LandingPage({ onLaunch }) {
           Aegis
         </div>
         
-        {/* Center Nav */}
-        <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 gap-10 tracking-widest text-black/80">
+        {/* Center Nav (Perfectly Centered) */}
+        <div className="absolute left-1/2 -translate-x-1/2 hidden md:flex items-center gap-10 tracking-widest text-black/80">
           <span className="cursor-pointer pointer-events-auto border-b border-black pb-1 hover:text-black transition-colors">HOME</span>
-          <span className="cursor-pointer pointer-events-auto hover:text-black transition-colors">FEATURES</span>
-          <span className="cursor-pointer pointer-events-auto hover:text-black transition-colors">HOW IT WORKS</span>
+          <span className="cursor-pointer pointer-events-auto pb-1 hover:text-black transition-colors">FEATURES</span>
+          <span className="cursor-pointer pointer-events-auto pb-1 hover:text-black transition-colors">HOW IT WORKS</span>
         </div>
 
         {/* Right Nav */}
         <div className="flex items-center gap-6 pointer-events-auto">
-          <span className="cursor-pointer hover:text-black/70 transition-colors flex items-center gap-2 leading-none">
+          <span className="cursor-pointer hover:text-black/70 transition-colors flex items-center gap-2">
             <div className="w-5 h-5 rounded-full bg-black text-white flex items-center justify-center">
               <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
             </div>
-            Log In
+            <span className="mt-[2px]">Log In</span>
           </span>
-          <button onClick={onLaunch} className="px-6 h-9 flex items-center justify-center bg-[#1a1a1a] text-white rounded-full font-sans text-sm hover:bg-black transition-colors leading-none">
+          <button onClick={onLaunch} className="px-6 py-2.5 bg-[#1a1a1a] text-white rounded-full font-sans text-sm hover:bg-black transition-colors">
             Get Started
           </button>
         </div>
       </div>
 
+
+
       {/* Bottom Center Elements (Subtitle, Button, Icons) */}
-      <div className="absolute bottom-16 left-1/2 -translate-x-1/2 w-full text-center z-20 pointer-events-auto">
-        <p className="font-mono text-sm md:text-base text-black/80 mb-6 tracking-wide">
+      <div className="absolute bottom-12 left-1/2 -translate-x-1/2 w-full text-center z-20 pointer-events-auto">
+        <p className="font-mono text-sm md:text-base text-black/80 mb-10 tracking-wide">
           Autonomous incident response<br/>for AI agents.
         </p>
         
