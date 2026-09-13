@@ -1,0 +1,17 @@
+{
+  "1234-abcd": {
+    "incident_id": "1234-abcd",
+    "timestamp": "2026-10-10T00:00:00Z",
+    "agent_id": "test-agent",
+    "failure_type": "execution_loop",
+    "severity": "high",
+    "root_cause": "The agent entered an infinite execution loop at step 3 when calling 'search'. It repeatedly made identical calls without making progress towards the goal.",
+    "suggested_fix": {
+      "description": "Break the loop by injecting a circuit breaker or explicit 'stop' condition in the agent's prompt. Require the agent to try a different approach if the same tool+input combination is called more than twice.",
+      "diff": "@@ -15,4 +15,6 @@\n def call_tool(tool_name, tool_input):\n+    if (tool_name, tool_input) in history and history.count((tool_name, tool_input)) >= 2:\n+        return \"Error: You are repeating the same action. Try a different strategy.\"\n     return execute(tool_name, tool_input)",
+      "target_file": "agent/demo_agent.py"
+    },
+    "status": "created",
+    "trace_ref": null
+  }
+}

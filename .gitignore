@@ -1,2 +1,4 @@
+*.md
 .env.local
 node_modules
+backend/venv/
