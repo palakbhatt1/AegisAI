@@ -87,9 +87,7 @@ AegisAI uses three external services:
 
 ### Live Deployment
 
-AegisAI is deployed here:
-
-[![Live Deployment](https://img.shields.io/badge/Live-black?style=flat-square&logo=vercel&logoColor=white)](https://aegis-ai-zv46.vercel.app/)
+AegisAI is deployed here: **[AegisAI](https://aegis-ai-zv46.vercel.app/)**
 
 ### Run Locally
 
@@ -203,8 +201,4 @@ The incident lifecycle is:
 Created → Notified → Under Review → Approved/Rejected → Applied → Tested → Resolved
 ```
 
-## Two-Minute Demo
 
-**Live Application:** [AegisAI](https://aegis-ai-zv46.vercel.app/)
-
-**Two-Minute Demo Video:** Add the final two-minute demo video link here before submission.
