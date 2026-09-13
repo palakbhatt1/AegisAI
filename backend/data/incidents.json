@@ -26,7 +26,7 @@
       "diff": "@@ -15,4 +15,6 @@\n def call_tool(tool_name, tool_input):\n+    if (tool_name, tool_input) in history and history.count((tool_name, tool_input)) >= 2:\n+        return \"Error: You are repeating the same action. Try a different strategy.\"\n     return execute(tool_name, tool_input)",
       "target_file": "agent/demo_agent.py"
     },
-    "status": "notified",
+    "status": "approved",
     "trace_ref": "trace-001"
   }
 }
