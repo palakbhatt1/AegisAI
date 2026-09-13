@@ -1,0 +1,41 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    @apply bg-[#c8d4c8] text-slate-900 antialiased selection:bg-indigo-500/30 overflow-hidden;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+}
+
+@layer utilities {
+  .hero-text {
+    font-size: clamp(3rem, 7vw, 7rem);
+    line-height: 0.85;
+    letter-spacing: -0.04em;
+    font-weight: 900;
+  }
+  
+  .glass-card {
+    /* Repurposing glass-card to mean the flat panel style */
+    @apply bg-[#dde5dd] border border-black/5 shadow-sm rounded-xl;
+  }
+
+  .nav-item {
+    @apply flex items-center gap-3 px-4 py-2 text-sm font-medium text-black/70 hover:text-black rounded-lg transition-colors cursor-pointer;
+  }
+  .nav-item.active {
+    @apply bg-black/5 text-black font-bold;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply px-6 py-3 bg-black hover:bg-slate-800 text-white font-bold rounded-full transition-all duration-300 shadow-[0_4px_14px_0_rgb(0,0,0,0.39)] hover:shadow-[0_6px_20px_rgba(0,0,0,0.23)] hover:-translate-y-0.5 active:scale-95 uppercase tracking-widest text-xs;
+  }
+  .btn-danger {
+    @apply px-6 py-3 bg-red-600 hover:bg-red-500 text-white font-bold rounded-full transition-all duration-300 shadow-[0_4px_14px_0_rgb(220,38,38,0.39)] hover:shadow-[0_6px_20px_rgba(220,38,38,0.23)] hover:-translate-y-0.5 active:scale-95 uppercase tracking-widest text-xs;
+  }
+  .btn-secondary {
+    @apply px-6 py-3 bg-white hover:bg-slate-50 text-black font-bold rounded-full transition-all duration-300 border-2 border-black/10 hover:border-black/20 active:scale-95 uppercase tracking-widest text-xs;
+  }
+}
